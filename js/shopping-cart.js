@@ -59,8 +59,8 @@ Array.from(document.querySelectorAll("input.count-field")).forEach(
       const total = subtotal + tax;
 
       document.querySelector(".subtotal-amount").textContent = subtotal;
-      document.querySelector(".tax-amount").textContent = subtotal;
-      document.querySelector(".total-amount").textContent = subtotal;
+      document.querySelector(".tax-amount").textContent = tax;
+      document.querySelector(".total-amount").textContent = total;
 
       const shouldCheckOutButtonBeDisabled = total <= 0;
 

@@ -15,6 +15,8 @@
       rel="stylesheet"
     />
     <link href="style.css" rel="stylesheet" />
+
+    <script defer src="js/shopping-cart.js"></script>
   </head>
 
   <body>
@@ -39,13 +41,19 @@
                       type="number"
                       min="0"
                       class="form-control text-center count-field"
-                      value="1"
+                      value="0"
                     />
                     <button class="btn btn-default btn-plus">
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
-                  <h5>$1219</h5>
+                  <h5>
+                    $<span
+                      class="total-price-for-this-item"
+                      data-per-item-price="1229"
+                      >0</span
+                    >
+                  </h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
                 </div>
               </div>
@@ -66,13 +74,19 @@
                       type="number"
                       min="0"
                       class="form-control text-center count-field"
-                      value="1"
+                      value="0"
                     />
                     <button class="btn btn-default btn-plus">
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
-                  <h5>$59</h5>
+                  <h5>
+                    $<span
+                      class="total-price-for-this-item"
+                      data-per-item-price="59"
+                      >0</span
+                    >
+                  </h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
                 </div>
               </div>
@@ -87,14 +101,14 @@
                 </div>
 
                 <div class="col-md-4 status">
-                  <h5>$1,278</h5>
-                  <h5>$0</h5>
-                  <h5>$1,278</h5>
+                  <h5>$<span class="subtotal-amount">0</span></h5>
+                  <h5>$<span class="tax-amount">0</span></h5>
+                  <h5>$<span class="total-amount">0</span></h5>
                 </div>
               </div>
             </div>
             <div class="col-md-12 pt-4 pb-4">
-              <button type="button" class="btn btn-success check-out">
+              <button type="button" class="btn btn-success check-out" disabled>
                 Check Out
               </button>
             </div>

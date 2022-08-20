@@ -1,4 +1,6 @@
-const countFieldChangedEvent = new Event("count-field-changed");
+const countFieldChangedEvent = new Event("count-field-changed", {
+  bubbles: true,
+});
 
 Array.from(document.querySelectorAll("button.btn")).forEach((button) => {
   button.addEventListener("click", function () {
@@ -46,26 +48,40 @@ Array.from(document.querySelectorAll("input.count-field")).forEach(
       const numberOfItems = this.valueAsNumber;
       totalPriceForThisItemElement.textContent = perItemPrice * numberOfItems;
 
-      //Setting Sub-Total Price for all Items
+      calculateTotal();
+    });
+  }
+);
 
-      const subtotal = Array.from(
-        document.querySelectorAll(".total-price-for-this-item")
-      ).reduce(
-        (sumUptoThisFar, currentElement) =>
-          sumUptoThisFar + Number(currentElement.textContent),
-        0
-      );
-      const tax = Math.ceil(subtotal * 0.1);
-      const total = subtotal + tax;
+function calculateTotal() {
+  //Setting Sub-Total Price for all Items
 
-      document.querySelector(".subtotal-amount").textContent = subtotal;
-      document.querySelector(".tax-amount").textContent = tax;
-      document.querySelector(".total-amount").textContent = total;
+  const subtotal = Array.from(
+    document.querySelectorAll(".total-price-for-this-item")
+  ).reduce(
+    (sumUptoThisFar, currentElement) =>
+      sumUptoThisFar + Number(currentElement.textContent),
+    0
+  );
+  const tax = Math.ceil(subtotal * 0.1);
+  const total = subtotal + tax;
 
-      const shouldCheckOutButtonBeDisabled = total <= 0;
+  document.querySelector(".subtotal-amount").textContent = subtotal;
+  document.querySelector(".tax-amount").textContent = tax;
+  document.querySelector(".total-amount").textContent = total;
 
-      document.querySelector("button.check-out").disabled =
-        shouldCheckOutButtonBeDisabled;
+  const shouldCheckOutButtonBeDisabled = total <= 0;
+
+  document.querySelector("button.check-out").disabled =
+    shouldCheckOutButtonBeDisabled;
+}
+
+Array.from(document.querySelectorAll("img.remove-item")).forEach(
+  (removeButton) => {
+    removeButton.addEventListener("click", function () {
+      const cartItemToBeDeleted = this.closest(".cart-item");
+      cartItemToBeDeleted.remove();
+      calculateTotal();
     });
   }
 );

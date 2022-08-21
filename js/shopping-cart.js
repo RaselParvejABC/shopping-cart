@@ -30,6 +30,7 @@ Array.from(document.querySelectorAll("input.count-field")).forEach(
   (countField) => {
     countField.addEventListener("input", function () {
       const newValue = this.valueAsNumber;
+      console.log(newValue);
       if (Number.isNaN(newValue)) {
         this.value = 0;
         return;
